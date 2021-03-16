@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="container">
+  <h2 style="font-weight: bold; color:blue">Welcome to Product Recommendation System</h2>
+</div>
+
+<div class="container">
+  <div class="jumbotron">
+
+    <p style="font-weight: bold; color:black">Enter Product Name</p>
+
+    <form action="/home" method="POST">
+      <input type="text" name="prod" class="form-control">
+	  <br>
+      <input type="submit" class="btn btn-info" value="VIEW">
+    </form>
+
+  </div>
+  
+  <h4 style="font-weight: bold; color:blue" align="center">Some of our products</h4>
+  
+  <div class="jumbotron">
+
+   
+   <p>{% for key in content %} {{key}} &nbsp; 	<b> | </b>&nbsp; 	 {% endfor %}</p>
+   
+
+  </div>
+  
+</div>
+
+
+
+{% endblock %}
