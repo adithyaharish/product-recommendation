@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = 'adithya'
 directory = getcwd()
 
 smd=pickle.load(open('smd.pkl','rb'))
-pre_df=pickle.load(open('pre_df.pkl','rb'))
+#pre_df=pickle.load(open('pre_df.pkl','rb'))
 
 
 
@@ -24,8 +24,6 @@ for index, row in smd.iterrows():
     content.append(row['product_name'])
 
 content2=list(set(content))[:200]
-
-
 
 
 
@@ -44,7 +42,7 @@ titles = smd['product_name']
 indices = pd.Series(smd.index, index=smd['product_name'])
 
 
-
+'''
 from sklearn.feature_extraction.text import TfidfVectorizer
 tfv = TfidfVectorizer(max_features=None,
                  strip_accents='unicode',
@@ -62,7 +60,7 @@ tfv_matrix = tfv.fit_transform(pre_df['description'])
 
 from sklearn.metrics.pairwise import sigmoid_kernel
 sig = sigmoid_kernel(tfv_matrix,tfv_matrix)
-
+'''
 
 
 def similar_prods(title):
@@ -75,7 +73,7 @@ def similar_prods(title):
     product_indices = [i[0] for i in sim_scores]
     return titles.iloc[product_indices]
 
-
+'''
 def product_recommendation(title,sig=sig):    
   
     indx = indices[title]
@@ -84,7 +82,7 @@ def product_recommendation(title,sig=sig):
     sig_scores = sig_scores[1:11]
     product_indices = [i[0] for i in sig_scores]
     return pre_df['product_name'].iloc[product_indices]
-
+'''
 
 
 @app.route("/")
@@ -98,7 +96,7 @@ def home():
         if prod_name in content:
             prod_detail = similar_prods(prod_name)
             prod_detail=prod_detail.head(10).to_dict()
-            
+            '''
             prod_detail_2 = product_recommendation(prod_name)
             prod_detail_2=prod_detail_2.head(10).to_dict()
             
@@ -107,15 +105,15 @@ def home():
             for key,val in prod_detail.items():
                 if(val in prod_detail_2):
                     res[key]=prod_detail[key]
-                else:
+                else: 
                     temp[key]=prod_detail[key]
             
             l=10-len(res)
             if(l!=0):
                 res.update(dict(itertools.islice(temp.items(),l)))
-            
-            out1 = dict(list(res.items())[:5])
-            out2 = dict(list(res.items())[5:])
+            '''
+            out1 = dict(list(prod_detail.items())[:5])
+            out2 = dict(list(prod_detail.items())[5:])
             
             return render_template('prod_view.html',prod_name=prod_name,prod1=out1,prod2=out2,exists='y') 
         else:
