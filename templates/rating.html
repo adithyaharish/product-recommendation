@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+	
+
+{% block content %}
+
+<div class="container">
+   
+		<br>
+		<h3 style="font-weight: bold; color:black;" align="center">Our Top Rated Product are ..</h3>
+		<br>
+		
+<div class="row">
+
+   <div class="column">
+		
+		
+		<table>
+		<tr>
+			
+			<th> product name</th>
+			<th>rating</th>
+		</tr>
+		{% for key, value in out1.items() %}
+		   <tr>
+				<td style="color:red"> {{ key }} </td>
+				<td style="color:blue"> {{ value }} </td>
+		   </tr>
+		{% endfor %}
+		</table>
+	</div>
+		
+		
+	 <div class="column">
+		
+		
+		<table>
+		<tr>
+			
+			<th> product name</th>
+			<th>rating</th>
+		</tr>
+		{% for key, value in out2.items() %}
+		   <tr>
+				<td style="color:red"> {{ key }} </td>
+				<td style="color:blue"> {{ value }} </td>
+		   </tr>
+		{% endfor %}
+		</table>
+	</div>
+	
+		
+</div>
+
+</div>
+
+
+{% endblock %}
