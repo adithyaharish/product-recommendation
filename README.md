@@ -5,4 +5,4 @@ A product recommenndation system that recommends similar products based on conte
 Tech used: 
 Flask, Pickle, Sklearn
 
-The live website can be seen at: https://prod-recommend.herokuapp.com/
+A glipmse of the demo can be seen at: https://github.com/adithyaharish/product-recommendation/blob/main/produt%20recommendation%20system.mp4
